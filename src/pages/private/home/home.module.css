@@ -1,0 +1,148 @@
+@import '../../../variables.css';
+
+
+/* Tipografía base */
+.container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+}
+
+/* Fondo y container */
+.container {
+  padding: 1.5rem;
+  max-width: 480px;
+  margin: auto;
+  background: var(--background-color);
+  color: #e5e5e5;
+}
+
+/* Loader */
+.loading {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.3rem;
+  color: #facc15;
+  font-weight: 500;
+}
+
+/* User info */
+.userInfo {
+  padding: 1.2rem;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+  background: #1f1f1f;
+  text-align: center;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.02);
+}
+
+.welcome {
+  font-size: 1.5rem;
+  margin-bottom: 0.4rem;
+  font-weight: 700;
+  color: var(--title-pink);
+}
+
+.deposit {
+  font-size: 1.1rem;
+  color: #facc15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Sección torneos */
+.tournaments {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-white);
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 2px solid var(--text-white);
+  padding-bottom: 0.5rem;
+}
+
+/* Card del torneo */
+.tournamentCard {
+  background-color: #1f1f1f;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tournamentCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.tournamentName {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 5px 0 20px;
+}
+
+.dateRange {
+  font-size: 0.9rem;
+  color: #bbb;
+}
+
+/* Detalles */
+.details {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.label {
+  font-size: 0.85rem;
+  color: #999;
+  margin-bottom: 0.3rem;
+}
+
+.value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--icon-green);
+}
+
+.participants {
+  font-size: 0.85rem;
+  color: #bbb;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .tournamentCard {
+    padding: 1rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.2rem;
+  }
+
+  .tournamentName {
+    font-size: 1rem;
+  }
+
+  .value {
+    font-size: 1rem;
+  }
+}

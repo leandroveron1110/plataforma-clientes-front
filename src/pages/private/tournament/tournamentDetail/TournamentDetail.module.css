@@ -1,0 +1,108 @@
+@import '../../../../variables.css';
+
+.tournamentContainer {
+  padding: 1rem;
+  background-color: var(--background-color);
+  min-height: 100vh;
+  color: var(--text-white);
+  font-family: sans-serif;
+}
+
+.title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  color: var(--title-pink);
+}
+
+.description {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #ccc;
+}
+
+.countdownContainer {
+  background-color: var(--color-gris);
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.countdown {
+  font-size: 1.2rem;
+  color: #00ff99;
+  font-weight: bold;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-white);
+  text-align: center;
+}
+
+/* Ranking */
+
+.participantsSection {
+  margin-top: 2rem;
+}
+
+.participantsTableContainer {
+  overflow-x: auto;
+  background-color: var(--color-gris);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.participantsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.participantsTable th,
+.participantsTable td {
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+.participantsTable th {
+  color: #aaa;
+  font-weight: 600;
+}
+
+.participantsTable td {
+  color: #fff;
+}
+
+.highlighted {
+  background-color: var(--title-pink);
+  font-weight: bold;
+  color: #00ff99;
+}
+
+.toggleButton {
+  margin-top: 1rem;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s ease;
+}
+
+.toggleButton:hover {
+  background-color: #444;
+}
+
+.full {
+  max-height: none;
+}

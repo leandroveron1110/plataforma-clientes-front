@@ -1,0 +1,114 @@
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 2rem;
+    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+    background: #000;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .header h1 {
+    font-size: 2.5rem;
+    color: #f51b9e;
+    margin-bottom: 0.5rem;
+  }
+  
+  .subHeader {
+    color: #ccc;
+    font-size: 1.2rem;
+  }
+  
+  .card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+  }
+  
+  .card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #f51b9e;
+  }
+  
+  .prizes {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .prizeGold, .prizeSilver, .prizeBronze {
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .prizeGold {
+    background: linear-gradient(135deg, #FFD700, #FFC300);
+    color: #000;
+  }
+  
+  .prizeSilver {
+    background: linear-gradient(135deg, #C0C0C0, #D3D3D3);
+    color: #000;
+  }
+  
+  .prizeBronze {
+    background: linear-gradient(135deg, #cd7f32, #d4945d);
+    color: #000;
+  }
+  
+  .requirement {
+    background: #2a2a2a;
+    padding: 1rem;
+    border-left: 4px solid #f51b9e;
+    border-radius: 6px;
+    font-size: 0.95rem;
+  }
+  
+  .pointsCard ul, .rulesCard ul, .miniList {
+    list-style: none;
+    padding-left: 0;
+    line-height: 1.7;
+  }
+  
+  .note {
+    font-style: italic;
+    color: #ccc;
+    margin-top: 1rem;
+  }
+  
+  .miniTourneyCard {
+    background: #1c1c1c;
+    border: 1px solid #f51b9e;
+  }
+  
+  .miniPrizes {
+    background: #2e003e;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    border-left: 4px solid #f51b9e;
+  }
+  
+  .miniPrizes h4 {
+    margin-bottom: 0.5rem;
+    color: #f51b9e;
+  }
+  
+  .footer {
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+    margin-top: 2rem;
+  }
+  

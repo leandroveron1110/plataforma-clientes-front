@@ -1,0 +1,83 @@
+@import '../../../variables.css';
+
+.profileContainer {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background-color: var(--background-color);
+  color: var(--text-white);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.profileIcon {
+  font-size: 60px;
+  color: #ffd700;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: var(--title-pink);
+  margin: 0;
+}
+
+.subtitle {
+  color: #cccccc;
+  font-size: 1.1rem;
+  margin-top: 8px;
+}
+
+.profileCard {
+  background-color: #222;
+  border-radius: 12px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profileItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: #2a2a2a;
+  padding: 15px 20px;
+  border-radius: 10px;
+  border-left: 4px solid #ffd700;
+  transition: background 0.3s ease;
+}
+
+.profileItem:hover {
+  background-color: #333;
+}
+
+.icon {
+  color: #ffd700;
+  font-size: 28px;
+  min-width: 28px;
+}
+
+.profileItem label {
+  font-weight: bold;
+  font-size: 0.95rem;
+  color: #ffd700;
+}
+
+.profileItem span {
+  font-size: 1.2rem;
+  display: block;
+  color: #ffffff;
+  margin-top: 4px;
+}
+
+.noUser {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #ff4d4d;
+  margin-top: 50px;
+}
