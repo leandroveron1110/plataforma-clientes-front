@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "./Home.module.css";
+import styles from "./home.module.css";
 import { FaWallet } from "react-icons/fa";
 import homeService, { UserTournamentSummary } from "./services/home.service";
 import Header from "../../../components/Header/Header";
