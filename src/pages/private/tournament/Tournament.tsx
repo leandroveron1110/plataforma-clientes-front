@@ -30,7 +30,14 @@ const Tournament = () => {
   };
 
   const handleClick = (tournament: TournamentResponse) => {
-    if (!tournament.isActive) return;
+    const now = new Date();
+    const start = new Date(tournament.startDate);
+    const end = new Date(tournament.endDate);
+
+    const isWithinDateRange = now >= start && now <= end;
+
+    if (!tournament.isActive || !isWithinDateRange) return;
+
     navigate(
       `/${PrivateRoutes.PRIVATE}/${PrivateRoutes.TOURNAMENT}/${tournament.id}`
     );
@@ -44,6 +51,23 @@ const Tournament = () => {
     return "Finalizado";
   };
 
+  const getStatusClass = (t: TournamentResponse) => {
+    const priority = getTournamentPriority(t);
+    if (priority === 0) return styles.active;
+    if (priority === 1) return styles.upcoming;
+    return styles.inactive;
+  };
+
+  const getTournamentPriority = (t: TournamentResponse) => {
+    const now = new Date();
+    const start = new Date(t.startDate);
+    const end = new Date(t.endDate);
+
+    if (t.isActive && now >= start && now <= end) return 0; // Activo
+    if (now < start) return 1; // Próximamente
+    return 2; // Finalizado
+  };
+
   return (
     <>
       {isLoading ? (
@@ -53,44 +77,40 @@ const Tournament = () => {
           <div className={styles.container}>
             <h1 className={styles.title}>Torneos</h1>
             <div className={styles.grid}>
-              {tournaments.map((t, i) => (
-                <div
-                  key={t.id}
-                  className={`${styles.card} ${
-                    !t.isActive ? styles.disabled : ""
-                  }`}
-                  style={{
-                    animationDelay: `${i * 100}ms`,
-                    cursor: t.isActive ? "pointer" : "not-allowed",
-                  }}
-                  onClick={() => handleClick(t)}
-                >
-                  <div className={styles.header}>
-                    <h2 className={styles.name}>{t.name}</h2>
-                    <span
-                      className={`${styles.status} ${
-                        t.isActive
-                          ? styles.active
-                          : new Date() < new Date(t.startDate)
-                          ? styles.upcoming
-                          : styles.inactive
-                      }`}
-                    >
-                      {getStatusLabel(t)}
-                    </span>
+              {tournaments
+                .sort(
+                  (a, b) => getTournamentPriority(a) - getTournamentPriority(b)
+                )
+                .map((t, i) => (
+                  <div
+                    key={t.id}
+                    className={`${styles.card} ${
+                      !t.isActive ? styles.disabled : ""
+                    }`}
+                    style={{
+                      animationDelay: `${i * 100}ms`,
+                      cursor: t.isActive ? "pointer" : "not-allowed",
+                    }}
+                    onClick={() => handleClick(t)}
+                  >
+                    <div className={styles.header}>
+                      <h2 className={styles.name}>{t.name}</h2>
+                      <span className={`${styles.status} ${getStatusClass(t)}`}>
+                        {getStatusLabel(t)}
+                      </span>
+                    </div>
+                    <div className={styles.dates}>
+                      <p>
+                        {/* <strong>Inicio:</strong>{" "} */}
+                        {new Date(t.startDate).toLocaleDateString()} -  {new Date(t.endDate).toLocaleDateString()}
+                      </p>
+                      {/* <p>
+                        <strong>Fin:</strong>{" "}
+                        {new Date(t.endDate).toLocaleDateString()}
+                      </p> */}
+                    </div>
                   </div>
-                  <div className={styles.dates}>
-                    <p>
-                      <strong>Inicio:</strong>{" "}
-                      {new Date(t.startDate).toLocaleDateString()}
-                    </p>
-                    <p>
-                      <strong>Fin:</strong>{" "}
-                      {new Date(t.endDate).toLocaleDateString()}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
           <Header />

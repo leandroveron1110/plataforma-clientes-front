@@ -111,3 +111,51 @@
 .full {
   max-height: none;
 }
+
+
+
+
+.prizesSection {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.prizeList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.prizeCard {
+  background-color: #222;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  width: 150px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.prizeImage {
+  width: 100%;
+  height: auto;
+  max-height: 100px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.prizePosition {
+  font-weight: bold;
+  color: var(--title-pink);
+}
+
+.prizeName {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  color: #fff;
+}
+
+.prizeValue {
+  font-size: 0.9rem;
+  color: #00ff99;
+}

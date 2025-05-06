@@ -7,12 +7,14 @@ import LoginService from "./services/Login.service";
 import { loginSuccess, logout } from "../../../redux/slices/auth.slice";
 import { PrivateRoutes } from "../../../routes/routes";
 import { axiosError } from "../../../utilities/https.utility";
+import Loader from "../../../components/Loading/Loading";
 
 const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [status, setStatus] = useState<boolean>(true)
+  const [status, setStatus] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [formData, setFormData] = useState<login>({
     name: "",
@@ -37,6 +39,7 @@ const Login = () => {
     e.preventDefault();
     try {
       if(status) {
+        setIsLoading(true);
         setStatus(false);
         const res = await LoginService.login(formData);
         
@@ -47,11 +50,17 @@ const Login = () => {
       }
     } catch (err: any) {
       setStatus(true);
+      setIsLoading(false);
       setError(`${axiosError(err).message}`);
     }
   };
 
   return (
+    <>
+    {
+      isLoading ? <Loader />
+
+      : 
     <div className={styles.container}>
       <div className={styles.containerForm}>
         <form onSubmit={handleSubmit} className={styles.form}>
@@ -89,6 +98,9 @@ const Login = () => {
         </form>
       </div>
     </div>
+    }
+    
+    </>
   );
 };
 

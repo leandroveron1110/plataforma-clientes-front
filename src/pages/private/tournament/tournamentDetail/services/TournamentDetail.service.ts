@@ -16,6 +16,7 @@ export interface Prize {
   value: number;
   type: PrizeType;
   customValue: string;
+  imageUrl?: string;
 }
 
 export interface TournamentPrize {

@@ -38,6 +38,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+  align-items: flex-start;
 }
 
 .card:hover {
@@ -65,7 +66,7 @@
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--text-white);
-  margin: 22px 4px 0;
+  margin: 5px 4px 0;
   flex: 1;
 }
 
@@ -79,15 +80,15 @@
 }
 
 .active {
-  background-color: #28a745;
-  color: #fff;
+  background-color: var(--icon-green);
+  color: #000;
   position: absolute;
   top: 0;
   right: 0;
 }
 
 .inactive {
-  background-color: #dc3545;
+  background-color: var(--color-gris);
   color: #fff;
   position: absolute;
   top: 0;
@@ -95,7 +96,7 @@
 }
 
 .upcoming {
-  background-color: #ffc107;
+  background-color: var(--color-orange);
   color: #000;
   position: absolute;
   top: 0;
