@@ -12,6 +12,8 @@ const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const [status, setStatus] = useState<boolean>(true)
+
   const [formData, setFormData] = useState<login>({
     name: "",
     password: "",
@@ -27,17 +29,24 @@ const Login = () => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: value.toLocaleLowerCase(),
     }));
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await LoginService.login(formData);
-      dispatch(loginSuccess({ token: res.access_token, user: res }));
-      navigate(`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.HOME}`);
+      if(status) {
+        setStatus(false);
+        const res = await LoginService.login(formData);
+        
+        dispatch(loginSuccess({ token: res.access_token, user: res }));
+        
+        navigate(`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.HOME}`);
+        
+      }
     } catch (err: any) {
+      setStatus(true);
       setError(`${axiosError(err).message}`);
     }
   };

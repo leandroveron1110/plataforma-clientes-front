@@ -1,18 +1,17 @@
 import styles from './Loading.module.css';
 
-const Loading: React.FC = () => {
+const Loader = () => {
   return (
-    <div className={styles.loadingContainer}>
-      <div className={styles.spinnerContainer}>
-        <div className={styles.dots}>
-          <div className={styles.dot}></div>
-          <div className={styles.dot}></div>
-          <div className={styles.dot}></div>
-        </div>
+    <div className={styles.loaderContainer}>
+      <div className={styles.glowRing}>
+        <span className={styles.glow}></span>
+        <span className={styles.glow}></span>
+        <span className={styles.glow}></span>
+        <span className={styles.glow}></span>
       </div>
-      <p className={styles.loadingText}>Cargando...</p>
+      <h2 className={styles.text}>Cargando Casino...</h2>
     </div>
   );
 };
 
-export default Loading;
+export default Loader;

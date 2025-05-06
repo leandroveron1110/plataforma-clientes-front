@@ -1,63 +1,76 @@
-/* Estilos para el contenedor del loading */
-.loadingContainer {
+@import '../../variables.css';
+
+.loaderContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100vw;
+  max-width: 500px;
   height: 100vh;
-  background-color: var(--color-grey);
-  /* font-family: "Press Start 2P", cursive; Fuente retro para el estilo de videojuegos */
-  color: #fff;
+  background-color: var(--background-color);
+  color: #d3c4a5;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Contenedor del spinner y los puntos */
-.spinnerContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.glowRing {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
 }
 
-/* Contenedor de puntos de carga */
-.dots {
-  display: flex;
-  justify-content: space-between;
-  width: 80px;
-}
-
-/* Estilos para los puntos */
-.dot {
-  background-color: var(--color-orange);
+.glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  border: 4px solid transparent;
   border-radius: 50%;
-  width: 10px;
-  height: 10px;
-  animation: bounce 1.5s infinite;
+  animation: pulse 2s infinite;
 }
 
-/* Animación de rebote de los puntos */
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-}
-
-/* Aplicar retraso para la animación secuencial */
-.dot:nth-child(1) {
+.glow:nth-child(1) {
+  border-color: var(--icon-green);
   animation-delay: 0s;
 }
-.dot:nth-child(2) {
-  animation-delay: 0.3s; /* Ajusta el retraso para que se mueva después del primero */
+.glow:nth-child(2) {
+  border-color: var(--title-pink);
+  animation-delay: 0.5s;
 }
-.dot:nth-child(3) {
-  animation-delay: 0.6s; /* Ajusta el retraso para que se mueva después del segundo */
+.glow:nth-child(3) {
+  border-color: var(--icon-green);
+  animation-delay: 1s;
+}
+.glow:nth-child(4) {
+  border-color: var(--title-pink);
+  animation-delay: 1.5s;
 }
 
-/* Estilos para el texto de carga */
-.loadingText {
-  margin-top: 16px;
-  font-size: 24px;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Efecto de sombra para el texto */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.text {
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  animation: flicker 1.5s infinite;
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.6;
+  }
 }

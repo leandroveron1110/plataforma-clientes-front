@@ -20,7 +20,6 @@ const ProfilePage = () => {
           {/* <FaUser className={styles.profileIcon} /> */}
           <h1 className={styles.title}>Mi Perfil</h1>
           <p className={styles.subtitle}>
-            Tu actividad y estado del fondo para el sorteo mensual.
           </p>
         </div>
 
