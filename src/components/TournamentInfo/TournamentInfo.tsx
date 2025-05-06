@@ -1,13 +1,5 @@
 import React from 'react';
 import styles from './TournamentInfo.module.css';
-import {
-    FaTrophy,
-    FaCalendarAlt,
-    FaGift,
-    FaInfoCircle,
-    FaMoneyBillWave,
-    FaCrown,
-  } from 'react-icons/fa';
 
 const TournamentInfo: React.FC = () => {
   return (
