@@ -5,16 +5,16 @@
 .container {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5;
-}
-
-/* Fondo y container */
-.container {
   padding: 1.5rem;
-  max-width: 480px;
+  max-width: 500px;
+  width: 100vw; /* Asegura que ocupe todo el ancho disponible */
   margin: auto;
+  min-height: 100vh;
   background: var(--background-color);
   color: #e5e5e5;
+  box-sizing: border-box; /* Incluye el padding en el ancho */
 }
+
 
 /* Loader */
 .loading {

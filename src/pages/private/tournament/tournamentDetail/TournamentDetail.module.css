@@ -1,11 +1,16 @@
 @import '../../../../variables.css';
 
 .tournamentContainer {
-  padding: 1rem;
+  padding: 1.5rem 1rem;
   background-color: var(--background-color);
   min-height: 100vh;
   color: var(--text-white);
-  font-family: sans-serif;
+  box-sizing: border-box;
+  width: 100vw; /* Añadido */
+  max-width: 500px; /* Añadido */
+  margin: 0 auto; /* Centrado horizontal */
+  min-height: 100vh;
+
 }
 
 .title {

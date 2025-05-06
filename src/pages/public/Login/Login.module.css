@@ -1,16 +1,25 @@
 @import '../../../variables.css';
 
+/* Contenedor general centrado */
+.container {
+  display: inline-block;
+  width: 100vw;
+  max-width: 500px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
 
-
+/* Estilos del formulario */
 .containerForm {
-  width: 300px;
-  margin: 40px;
-  padding: 25px 35px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 25px 20px;
   border-radius: 3px;
   background-color: var(--background-color);
   color: var(--text-white);
+  box-sizing: border-box;
 }
-
 
 .formGroupTitle {
   font-size: 20px;
@@ -71,7 +80,6 @@
 .button {
   background-color: var(--icon-green);
   color: #fff;
-  /* border: none; */
   border-radius: 15px;
   cursor: pointer;
   font-size: 20px;
@@ -84,26 +92,20 @@
 .buttonCancel {
   background-color: var(--color-grey);
   color: #fff;
-  /* margin-top: 50px; */
   border: none;
   font-size: 12px;
   text-decoration: underline;
 }
 
+/* Medias para tamaños menores */
 @media (max-width: 430px) {
-  .container {
-    height: 100vh;
-  }
-  
-  
   .containerForm {
-    width: 250px;
+    padding: 25px 15px;
   }
-
 }
 
 @media (max-width: 340px) {
   .containerForm {
-    width: 230px;
+    padding: 25px 10px;
   }
 }
