@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
 import styles from "./home.module.css";
 import { FaWallet } from "react-icons/fa";
-import homeService, { UserTournamentSummary } from "./services/home.service";
+import homeService, {
+  Tournament,
+  UserTournamentSummary,
+} from "./services/home.service";
 import Header from "../../../components/Header/Header";
-import { PrivateRoutesHttp } from "../../../routes/routes";
+import { PrivateRoutes, PrivateRoutesHttp } from "../../../routes/routes";
 import { useAppSelector } from "../../../redux/hooks";
 import InfoCardItem from "../components/InfoCardItem/InfoCardItem";
 import Loader from "../../../components/Loading/Loading";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [data, setData] = useState<UserTournamentSummary | null>(null);
   const user = useAppSelector((state) => state.auth.user);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,6 +31,20 @@ const Home = () => {
 
     fetchData();
   }, [user]);
+
+  const handleClick = (tournament: Tournament) => {
+    const now = new Date();
+    const start = new Date(tournament.startDate);
+    const end = new Date(tournament.endDate);
+
+    const isWithinDateRange = now >= start && now <= end;
+
+    if (!isWithinDateRange) return;
+
+    navigate(
+      `/${PrivateRoutes.PRIVATE}/${PrivateRoutes.TOURNAMENT}/${tournament.tournamentId}`
+    );
+  };
 
   if (!data) return <Loader />;
 
@@ -58,7 +77,11 @@ const Home = () => {
                 </p>
               ) : (
                 data.tournaments.map((t) => (
-                  <div key={t.tournamentId} className={styles.tournamentCard}>
+                  <div
+                    onClick={() => handleClick(t)}
+                    key={t.tournamentId}
+                    className={styles.tournamentCard}
+                  >
                     <div className={styles.tournamentTop}>
                       <h4 className={styles.tournamentName}>
                         {t.tournamentName}
