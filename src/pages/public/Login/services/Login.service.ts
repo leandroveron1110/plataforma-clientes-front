@@ -10,6 +10,15 @@ export interface LoginResponse {
 }
 
 class LoginService {
+  async ping() {
+    try {
+      const res = await axiosInstance.get<string>(
+        `users/ping` )
+      return res.data;
+    } catch (error) {
+      
+    }
+  }
   async login(data: login) {
     try {
       const res = await axiosInstance.post<LoginResponse>(

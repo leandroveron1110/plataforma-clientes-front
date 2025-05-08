@@ -1,6 +1,7 @@
 export const PublicRoutes = {
   PUBLIC: "casino",
   LOGIN: "login",
+  BENEFITS: "formas-de-ganar",
 };
 
 export const PrivateRoutes = {

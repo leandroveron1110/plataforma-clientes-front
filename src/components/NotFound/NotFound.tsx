@@ -10,7 +10,7 @@ const NotFound = () => {
     if (token) {
       navigate(`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.HOME}`);
     } else {
-      navigate(`/${PublicRoutes.PUBLIC}/${PublicRoutes.LOGIN}`);
+      navigate(`/${PublicRoutes.PUBLIC}/${PublicRoutes.BENEFITS}`);
     }
   };
 

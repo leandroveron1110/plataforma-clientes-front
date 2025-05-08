@@ -5,9 +5,10 @@ import { login } from "./types/login.types";
 import styles from "./Login.module.css";
 import LoginService from "./services/Login.service";
 import { loginSuccess, logout } from "../../../redux/slices/auth.slice";
-import { PrivateRoutes } from "../../../routes/routes";
+import { PrivateRoutes, PublicRoutes } from "../../../routes/routes";
 import { axiosError } from "../../../utilities/https.utility";
 import Loader from "../../../components/Loading/Loading";
+import { FiArrowLeft } from "react-icons/fi";
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -20,10 +21,13 @@ const Login = () => {
     name: "",
     password: "",
   });
+
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     dispatch(logout());
+    const ping = async()=> await LoginService.ping();
+    ping();
     window.scrollTo(0, 0);
   }, []);
 
@@ -31,22 +35,19 @@ const Login = () => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value.toLocaleLowerCase(),
+      [name]: value.toLowerCase(),
     }));
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      if(status) {
+      if (status) {
         setIsLoading(true);
         setStatus(false);
         const res = await LoginService.login(formData);
-        
         dispatch(loginSuccess({ token: res.access_token, user: res }));
-        
         navigate(`/${PrivateRoutes.PRIVATE}/${PrivateRoutes.HOME}`);
-        
       }
     } catch (err: any) {
       setStatus(true);
@@ -57,49 +58,59 @@ const Login = () => {
 
   return (
     <>
-    {
-      isLoading ? <Loader />
-
-      : 
-    <div className={styles.container}>
-      <div className={styles.containerForm}>
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <h2 className={styles.title}>Inicia sesión</h2>
-          <div className={styles.formGroup}>
-            <label htmlFor="name" className={styles.label}>Usuario</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className={styles.input}
-              placeholder="Tu nombre de usuario"
-              required
-            />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className={styles.container}>
+          <div className={styles.containerForm}>
+            <button
+              type="button"
+              className={styles.backButton}
+              onClick={() => navigate(`/${PublicRoutes.PUBLIC}/${PublicRoutes.BENEFITS}`)}
+            >
+              <FiArrowLeft className={styles.backIcon} />
+              Volver
+            </button>
+            <form onSubmit={handleSubmit} className={styles.form}>
+              <h2 className={styles.title}>Inicia sesión</h2>
+              <div className={styles.formGroup}>
+                <label htmlFor="name" className={styles.label}>
+                  Usuario
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className={styles.input}
+                  placeholder="Tu nombre de usuario"
+                  required
+                />
+              </div>
+              <div className={styles.formGroup}>
+                <label htmlFor="password" className={styles.label}>
+                  Contraseña
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  className={styles.input}
+                  placeholder="Tu contraseña"
+                  required
+                />
+              </div>
+              {error && <p className={styles.error}>{error}</p>}
+              <button type="submit" className={styles.button}>
+                Acceder
+              </button>
+            </form>
           </div>
-          <div className={styles.formGroup}>
-            <label htmlFor="password" className={styles.label}>Contraseña</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className={styles.input}
-              placeholder="Tu contraseña"
-              required
-            />
-          </div>
-          {error && <p className={styles.error}>{error}</p>}
-          <button type="submit" className={styles.button}>
-            Acceder
-          </button>
-        </form>
-      </div>
-    </div>
-    }
-    
+        </div>
+      )}
     </>
   );
 };

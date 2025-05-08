@@ -111,6 +111,7 @@ const Home = () => {
                 ))
               )}
             </section>
+            
           </div>
 
           <Header />
