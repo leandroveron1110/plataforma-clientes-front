@@ -24,7 +24,7 @@
 }
 
 /* User info */
-.userInfo {
+.userInfo, .bonus {
   padding: 1.2rem;
   border-radius: 1rem;
   margin-bottom: 2rem;
@@ -137,6 +137,10 @@
 .participants {
   font-size: 0.8rem;
   color: #999;
+}
+
+.bonus {
+margin-top: 50px;
 }
 
 /* Responsive */

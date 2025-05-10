@@ -82,7 +82,8 @@ const TournamentDetail = () => {
     (participant) => participant.id === user?.id
   );
 
-  const currentUserPosition = currentUserIndex >= 0 ? currentUserIndex + 1 : null;
+  const currentUserPosition =
+    currentUserIndex >= 0 ? currentUserIndex + 1 : null;
 
   // Agrupar premios por posición
   const groupedPrizes = tournament.prizes.reduce((acc, prize) => {
@@ -174,10 +175,17 @@ const TournamentDetail = () => {
                       )
                       .map((participant, index) => {
                         let icon = "";
-                        if (index === 0) icon = "🥇";
-                        else if (index === 1) icon = "🥈";
-                        else if (index === 2) icon = "🥉";
-                        else if (index < 10) icon = "🏅";
+                        const prizePositions =
+                          Object.keys(groupedPrizes).map(Number);
+
+                        const position = index + 1;
+                        if (prizePositions.includes(position)) {
+                          if (index === 0) icon = "🥇";
+                          else if (index === 1) icon = "🥈";
+                          else if (index === 2) icon = "🥉";
+                          else icon = "🏅";
+                        }
+
                         const isCurrentUser = user?.id === participant.id;
 
                         return (
@@ -186,7 +194,7 @@ const TournamentDetail = () => {
                             className={isCurrentUser ? styles.highlighted : ""}
                           >
                             <td>
-                              {icon} {index + 1}
+                              {icon} {position}
                             </td>
                             <td>
                               {isCurrentUser ? user.name : participant.name}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./home.module.css";
-import { FaWallet } from "react-icons/fa";
+import { FaGift, FaWallet } from "react-icons/fa";
 import homeService, {
   Tournament,
   UserTournamentSummary,
@@ -49,6 +49,12 @@ const Home = () => {
   if (!data) return <Loader />;
 
   const accumulatedFund = (data.totalDeposits * 0.1).toFixed(2);
+
+  const message = encodeURIComponent(
+    "¡Hola! Quiero recibir mi bono del día. ¿Está disponible?"
+  );
+  const phone = "5493442622763";
+  const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
 
   return (
     <>
@@ -111,7 +117,14 @@ const Home = () => {
                 ))
               )}
             </section>
-            
+
+            <section className={styles.bonus}>
+              <InfoCardItem
+                icon={<FaGift />}
+                label="Bonus del día"
+                onClick={() => window.open(whatsappUrl, "_blank")}
+              />
+            </section>
           </div>
 
           <Header />
