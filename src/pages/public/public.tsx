@@ -4,13 +4,15 @@ import RoutesWithNotFound from "../../utilities/RoutesWithNotFound.utility";
 import { PublicRoutes } from "../../routes/routes";
 
 const Login = lazy(() => import("./Login/Login"));
-const Benefits = lazy(()=> import("./Benefits/Benefits"))
+const Benefits = lazy(() => import("./Benefits/Benefits"));
+const KeepAlive = lazy(() => import("./KeepAlive/KeepAlive"));
 
 function Public() {
   return (
     <RoutesWithNotFound>
       <Route path={PublicRoutes.LOGIN} element={<Login />} />
       <Route path={PublicRoutes.BENEFITS} element={<Benefits />} />
+      <Route path={PublicRoutes.KEEP_ALIVE} element={<KeepAlive />} />
     </RoutesWithNotFound>
   );
 }

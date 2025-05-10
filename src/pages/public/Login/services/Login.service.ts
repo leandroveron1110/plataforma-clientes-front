@@ -16,7 +16,7 @@ class LoginService {
         `users/ping` )
       return res.data;
     } catch (error) {
-      
+      throw error;
     }
   }
   async login(data: login) {
