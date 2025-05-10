@@ -84,7 +84,18 @@ const TournamentDetail = () => {
 
   const currentUserPosition = currentUserIndex >= 0 ? currentUserIndex + 1 : null;
 
+  // Agrupar premios por posición
+  const groupedPrizes = tournament.prizes.reduce((acc, prize) => {
+    if (!acc[prize.position]) {
+      acc[prize.position] = [];
+    }
+    acc[prize.position].push(prize.prize);
+    return acc;
+  }, {} as Record<number, TournamentResponse["prizes"][number]["prize"][]>);
 
+  const sortedGroupedPrizeEntries = Object.entries(groupedPrizes).sort(
+    ([a], [b]) => Number(a) - Number(b)
+  );
 
   return (
     <>
@@ -107,32 +118,33 @@ const TournamentDetail = () => {
               <strong className={styles.countdown}>{countdown}</strong>
             </div>
 
-
             <section className={styles.prizesSection}>
               <h2 className={styles.sectionTitle}>Premios</h2>
               <div className={styles.prizeList}>
-                {tournament.prizes.map((prize, index) => {
-                  const isUserPrize = prize.position === currentUserPosition;
+                {sortedGroupedPrizeEntries.map(([position, prizes]) => {
+                  const numericPosition = Number(position);
+                  const isUserPrize = numericPosition === currentUserPosition;
 
                   return (
                     <div
-                      key={prize.position}
+                      key={position}
                       className={`${styles.prizeCard} ${
                         isUserPrize ? styles.highlightedPrize : ""
                       }`}
                     >
-                      {prize.prize.imageUrl && (
-                        <img
-                          src={prize.prize.imageUrl}
-                          alt={`Premio ${index + 1}`}
-                          className={styles.prizeImage}
-                        />
-                      )}
-                      <span className={styles.prizePosition}># {prize.position}</span>
-                      <p className={styles.prizeName}>{prize.prize.name}</p>
-                      {/* <p className={styles.prizeValue}>
-                        ${prize.prize.value.toLocaleString()}
-                      </p> */}
+                      <span className={styles.prizePosition}># {position}</span>
+                      {prizes.map((prize, i) => (
+                        <div key={i} className={styles.prizeItem}>
+                          {prize.imageUrl && (
+                            <img
+                              src={prize.imageUrl}
+                              alt={`Premio ${i + 1}`}
+                              className={styles.prizeImage}
+                            />
+                          )}
+                          <p className={styles.prizeName}>{prize.name}</p>
+                        </div>
+                      ))}
                     </div>
                   );
                 })}
