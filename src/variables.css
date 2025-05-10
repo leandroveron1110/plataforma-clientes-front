@@ -6,5 +6,8 @@
     --icon-blue: #1873f5;
     --color-gris: #222122;
     --color-orange: #f5ac18;
+
+      --gold-gradient: linear-gradient(145deg, #f5ac18, #fbe07d);
+  --neon-border: 0 0 10px rgba(245, 172, 24, 0.5);
   }
   

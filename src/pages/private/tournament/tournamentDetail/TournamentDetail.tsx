@@ -74,6 +74,18 @@ const TournamentDetail = () => {
     return <Loader />;
   }
 
+  const sortedParticipants = [...tournament.participants].sort(
+    (a, b) => b.points - a.points
+  );
+
+  const currentUserIndex = sortedParticipants.findIndex(
+    (participant) => participant.id === user?.id
+  );
+
+  const currentUserPosition = currentUserIndex >= 0 ? currentUserIndex + 1 : null;
+
+
+
   return (
     <>
       {isLoading ? (
@@ -95,19 +107,37 @@ const TournamentDetail = () => {
               <strong className={styles.countdown}>{countdown}</strong>
             </div>
 
-            {/* <section className={styles.prizesSection}>
-          <h2 className={styles.sectionTitle}>Premios</h2>
-          <div className={styles.prizeList}>
-            {tournament.prizes.map((prize, index) => (
-              <div key={prize.position} className={styles.prizeCard}>
-                <img src={prize.prize.imageUrl} alt={`Premio ${index + 1}`} className={styles.prizeImage} />
-                <span className={styles.prizePosition}># {prize.position}</span>
-                <p className={styles.prizeName}>{prize.prize.name}</p>
-                <p className={styles.prizeValue}>${prize.prize.value.toLocaleString()}</p>
+
+            <section className={styles.prizesSection}>
+              <h2 className={styles.sectionTitle}>Premios</h2>
+              <div className={styles.prizeList}>
+                {tournament.prizes.map((prize, index) => {
+                  const isUserPrize = prize.position === currentUserPosition;
+
+                  return (
+                    <div
+                      key={prize.position}
+                      className={`${styles.prizeCard} ${
+                        isUserPrize ? styles.highlightedPrize : ""
+                      }`}
+                    >
+                      {prize.prize.imageUrl && (
+                        <img
+                          src={prize.prize.imageUrl}
+                          alt={`Premio ${index + 1}`}
+                          className={styles.prizeImage}
+                        />
+                      )}
+                      <span className={styles.prizePosition}># {prize.position}</span>
+                      <p className={styles.prizeName}>{prize.prize.name}</p>
+                      {/* <p className={styles.prizeValue}>
+                        ${prize.prize.value.toLocaleString()}
+                      </p> */}
+                    </div>
+                  );
+                })}
               </div>
-            ))}
-          </div>
-        </section> */}
+            </section>
 
             <section className={styles.participantsSection}>
               <h2 className={styles.sectionTitle}>Ranking</h2>
@@ -125,11 +155,10 @@ const TournamentDetail = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {tournament.participants
-                      .sort((a, b) => b.points - a.points)
+                    {sortedParticipants
                       .slice(
                         0,
-                        showFullRanking ? tournament.participants.length : 10
+                        showFullRanking ? sortedParticipants.length : 10
                       )
                       .map((participant, index) => {
                         let icon = "";
