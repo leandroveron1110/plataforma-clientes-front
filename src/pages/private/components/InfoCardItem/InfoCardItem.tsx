@@ -14,19 +14,17 @@ const InfoCardItem: React.FC<InfoCardItemProps> = ({
   value,
   onClick,
 }) => {
+  const isClickable = Boolean(onClick);
+
   return (
     <div
-      className={styles.item}
-      onClick={() => {
-        if (onClick) {
-          onClick();
-        }
-      }}
+      className={`${styles.item} ${isClickable ? styles.clickable : ""}`}
+      onClick={onClick}
     >
       <div className={styles.icon}>{icon}</div>
-      <div>
-        <label>{label}</label>
-        <span>{value}</span>
+      <div className={styles.textContent}>
+        <span className={styles.label}>{label}</span>
+        <span className={styles.value}>{value}</span>
       </div>
     </div>
   );

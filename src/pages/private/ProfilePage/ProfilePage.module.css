@@ -1,4 +1,4 @@
-@import '../../../variables.css';
+@import "../../../variables.css";
 
 .profileContainer {
   padding: 1.5rem 1rem;
@@ -10,8 +10,6 @@
   max-width: 500px; /* Añadido */
   margin: 0 auto; /* Centrado horizontal */
   min-height: 100vh;
-
-  
 }
 
 .header {
@@ -85,4 +83,25 @@
   font-size: 1.5rem;
   color: #ff4d4d;
   margin-top: 50px;
+}
+
+.sectionButton {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.logoutButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: var(--title-pink);
+  color: var(--text-white);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.logoutButton:hover {
+  transform: scale(1.05);
 }

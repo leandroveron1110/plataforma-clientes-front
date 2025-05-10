@@ -122,6 +122,7 @@ const Home = () => {
               <InfoCardItem
                 icon={<FaGift />}
                 label="Bonus del día"
+                value={"Reclama tu bonus del día"}
                 onClick={() => window.open(whatsappUrl, "_blank")}
               />
             </section>
