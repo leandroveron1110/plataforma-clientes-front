@@ -11,11 +11,14 @@ import { useAppSelector } from "../../../redux/hooks";
 import InfoCardItem from "../components/InfoCardItem/InfoCardItem";
 import Loader from "../../../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
+import BonusModal from "./components/BonusModal/BonusModal";
 
 const Home = () => {
   const [data, setData] = useState<UserTournamentSummary | null>(null);
   const user = useAppSelector((state) => state.auth.user);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isBonus, setIsBonus] = useState<boolean>(false);
+  const [isLastPlayed, setIsLastPlayed] = useState<boolean>(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,6 +31,13 @@ const Home = () => {
         setIsLoading(false);
       }
     };
+
+    const lastPlayed = localStorage.getItem("bonusGameLastPlayed");
+    const today = new Date().toDateString();
+
+    if (lastPlayed === today) {
+      setIsLastPlayed(true);
+    }
 
     fetchData();
   }, [user]);
@@ -42,11 +52,7 @@ const Home = () => {
 
   const accumulatedFund = (data.totalDeposits * 0.1).toFixed(2);
 
-  const message = encodeURIComponent(
-    "¡Hola! Quiero recibir mi bono del día. ¿Está disponible?"
-  );
-  const phone = "5493442622763";
-  const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
+  const modalBonus = () => {if(!isLastPlayed) setIsBonus(!isBonus);}
 
   return (
     <>
@@ -114,11 +120,35 @@ const Home = () => {
               <InfoCardItem
                 icon={<FaGift />}
                 label="Bonus del día"
-                value={"Reclama tu bonus del día"}
-                onClick={() => window.open(whatsappUrl, "_blank")}
+                value={isLastPlayed ? "Ya jugaste hoy. Volvé mañana para intentarlo de nuevo." : "Reclama tu bonus del día"}
+                onClick={modalBonus}
               />
             </section>
           </div>
+          {isBonus ? (
+            <BonusModal
+              prizes={[
+                // Tier: MIN (comunes) – 9 cartas
+                { label: "5% Bonus", tier: "min", weight: 3 },
+                { label: "+3 Puntos", tier: "min", weight: 3 },
+
+                // Tier: MAJO (intermedios) – 3 cartas
+                { label: "15% Bonus", tier: "majo", weight: 3 },
+                { label: "$1k Fichas", tier: "majo", weight: 1 },
+                { label: "+5 Puntos", tier: "majo", weight: 3 },
+
+                // Tier: MAXI – 2 cartas
+                { label: "45% Bonus", tier: "maxi", weight: 2 },
+                { label: "$3k Fichas", tier: "maxi", weight: 2 },
+
+                // Tier: GOLD – 1 carta (muy raro, pero posible)
+                { label: "🎖️ BONUS LEGENDARIO", tier: "gold", weight: 1 },
+              ]}
+              onClose={modalBonus}
+            />
+          ) : (
+            <></>
+          )}
 
           <Header />
         </>

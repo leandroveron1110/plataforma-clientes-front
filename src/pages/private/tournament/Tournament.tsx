@@ -30,26 +30,20 @@ const Tournament = () => {
   };
 
   const handleClick = (tournament: TournamentResponse) => {
-    const now = new Date();
-    const start = new Date(tournament.startDate);
-    const end = new Date(tournament.endDate);
-
-    const isWithinDateRange = now >= start && now <= end;
-
-    if (!tournament.isActive || !isWithinDateRange) return;
-
     navigate(
       `/${PrivateRoutes.PRIVATE}/${PrivateRoutes.TOURNAMENT}/${tournament.id}`
     );
   };
 
-  const getStatusLabel = (t: TournamentResponse) => {
-    const now = new Date();
-    const start = new Date(t.startDate);
-    if (now < start) return "Próximamente";
-    if (t.isActive) return "Activo";
-    return "Finalizado";
-  };
+const getStatusLabel = (t: TournamentResponse) => {
+  const now = new Date();
+  const start = new Date(t.startDate);
+  const end = new Date(t.endDate);
+
+  if (now < start) return "Próximamente";
+  if (t.isActive && now >= start && now <= end) return "Activo";
+  return "Finalizado";
+};
 
   const getStatusClass = (t: TournamentResponse) => {
     const priority = getTournamentPriority(t);
@@ -58,15 +52,15 @@ const Tournament = () => {
     return styles.inactive;
   };
 
-  const getTournamentPriority = (t: TournamentResponse) => {
-    const now = new Date();
-    const start = new Date(t.startDate);
-    const end = new Date(t.endDate);
+const getTournamentPriority = (t: TournamentResponse) => {
+  const now = new Date();
+  const start = new Date(t.startDate);
+  const end = new Date(t.endDate);
 
-    if (t.isActive && now >= start && now <= end) return 0; // Activo
-    if (now < start) return 1; // Próximamente
-    return 2; // Finalizado
-  };
+  if (now < start) return 1; // Próximamente
+  if (t.isActive && now >= start && now <= end) return 0; // Activo
+  return 2; // Finalizado
+};;
 
   return (
     <>

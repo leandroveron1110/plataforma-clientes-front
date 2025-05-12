@@ -1,0 +1,80 @@
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-top: 5.5rem;
+}
+
+.container {
+  background: radial-gradient(circle, #222 0%, #111 100%);
+  color: white;
+  padding: 2rem;
+  border-radius: 20px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.2), transparent);
+  animation: pulseGlow 3s infinite ease-in-out;
+  z-index: 0;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+.content {
+  font-size: 1.5rem;
+  font-weight: bold;
+  z-index: 2;
+  position: relative;
+}
+
+.contentButton {
+  margin-top: 1.5rem;
+  z-index: 2;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  background: #25d366;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+}
+
+.button:hover {
+  background: #1ebe5d;
+  transform: scale(1.05);
+}
+
+.icon {
+  font-size: 1.2rem;
+}
