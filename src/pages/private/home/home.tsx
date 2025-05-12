@@ -33,13 +33,6 @@ const Home = () => {
   }, [user]);
 
   const handleClick = (tournament: Tournament) => {
-    const now = new Date();
-    const start = new Date(tournament.startDate);
-    const end = new Date(tournament.endDate);
-
-    const isWithinDateRange = now >= start && now <= end;
-
-    if (!isWithinDateRange) return;
 
     navigate(
       `/${PrivateRoutes.PRIVATE}/${PrivateRoutes.TOURNAMENT}/${tournament.tournamentId}`
