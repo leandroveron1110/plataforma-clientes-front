@@ -33,7 +33,6 @@ const Home = () => {
   }, [user]);
 
   const handleClick = (tournament: Tournament) => {
-
     navigate(
       `/${PrivateRoutes.PRIVATE}/${PrivateRoutes.TOURNAMENT}/${tournament.tournamentId}`
     );
