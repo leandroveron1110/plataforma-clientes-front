@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAppDispatch } from "../../../redux/hooks";
 import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { login } from "./types/login.types";
@@ -13,6 +13,7 @@ import { FiArrowLeft } from "react-icons/fi";
 const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   const [status, setStatus] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -26,9 +27,15 @@ const Login = () => {
 
   useEffect(() => {
     dispatch(logout());
-    const ping = async()=> await LoginService.ping();
+    const ping = async () => await LoginService.ping();
     ping();
     window.scrollTo(0, 0);
+    const name = searchParams.get("name");
+    const password = searchParams.get("password");
+
+    if (name && password) {
+      setFormData({ name: name.toLowerCase(), password: password.toLocaleLowerCase() });
+    }
   }, []);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -66,7 +73,9 @@ const Login = () => {
             <button
               type="button"
               className={styles.backButton}
-              onClick={() => navigate(`/${PublicRoutes.PUBLIC}/${PublicRoutes.BENEFITS}`)}
+              onClick={() =>
+                navigate(`/${PublicRoutes.PUBLIC}/${PublicRoutes.BENEFITS}`)
+              }
             >
               <FiArrowLeft className={styles.backIcon} />
               Volver

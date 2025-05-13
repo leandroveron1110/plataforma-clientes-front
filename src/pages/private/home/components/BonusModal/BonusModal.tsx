@@ -94,9 +94,12 @@ const BonusGameModal = ({ onClose, prizes }: BonusGameModalProps) => {
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modal}>
-        <button className={styles.closeButton} onClick={onClose}>
+        {
+          !winner && (<button className={styles.closeButton} onClick={onClose}>
           <FaTimes />
-        </button>
+        </button>)
+        }
+        
         <h2 className={styles.modalTitle}>¡Descubrí tu bono!</h2>
 
         <section className={styles.containerGrid}>
