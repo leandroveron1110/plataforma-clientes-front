@@ -13,16 +13,19 @@ const BonusCard = ({ revealed, label, tier, onClick }: BonusCardProps) => {
 
   return (
     <div className={styles.flipCardWrapper} onClick={onClick}>
-  <div className={`${styles.flipCardInner} ${revealed ? styles.revealed : ""}`}>
-    <div className={`${styles.flipCardFace} ${styles.flipCardFront}`}>
-      ?
+      <div
+        className={`${styles.flipCardInner} ${revealed ? styles.revealed : ""}`}
+      >
+        <div className={`${styles.flipCardFace} ${styles.flipCardFront}`}>
+          ?
+        </div>
+        <div
+          className={`${styles.flipCardFace} ${styles.flipCardBack} ${tierClass}`}
+        >
+          {revealed ? label : ""}
+        </div>
+      </div>
     </div>
-    <div className={`${styles.flipCardFace} ${styles.flipCardBack} ${tierClass}`}>
-      {revealed ? label : ''}
-    </div>
-  </div>
-</div>
-
   );
 };
 

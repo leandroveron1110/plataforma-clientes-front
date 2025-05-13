@@ -11,7 +11,7 @@ import { useAppSelector } from "../../../redux/hooks";
 import InfoCardItem from "../components/InfoCardItem/InfoCardItem";
 import Loader from "../../../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
-import BonusModal from "./components/BonusModal/BonusModal";
+import BonusGameModal from "../components/BonusModal/BonusModal";
 
 const Home = () => {
   const [data, setData] = useState<UserTournamentSummary | null>(null);
@@ -126,7 +126,7 @@ const Home = () => {
             </section>
           </div>
           {isBonus ? (
-            <BonusModal
+            <BonusGameModal
               prizes={[
                 // Tier: MIN (comunes) – 9 cartas
                 { label: "5% Bonus", tier: "min", weight: 3 },

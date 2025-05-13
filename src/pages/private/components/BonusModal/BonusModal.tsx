@@ -3,6 +3,7 @@ import { FaTimes } from "react-icons/fa";
 import styles from "./BonusModal.module.css";
 import BonusCard from "./components/BonusCard/BonusCard";
 import BonusWinner from "./components/BonusWinner/BonusWinner";
+import BonusInstructions from "./components/BonusInstructions/BonusInstructions";
 
 interface BonusPrize {
   label: string;
@@ -35,6 +36,7 @@ const BonusGameModal = ({ onClose, prizes }: BonusGameModalProps) => {
   const [cards, setCards] = useState<Card[]>([]);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const [winner, setWinner] = useState<string | null>(null);
+  const [isInstruction, setIsInstruction] = useState<boolean>(true);
 
   useEffect(() => {
     const generated: Card[] = [];
@@ -91,33 +93,41 @@ const BonusGameModal = ({ onClose, prizes }: BonusGameModalProps) => {
     onClose();
   };
 
+  const onCloseInstructios = ()=> setIsInstruction(false)
+
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modal}>
-        {
-          !winner && (<button className={styles.closeButton} onClick={onClose}>
-          <FaTimes />
-        </button>)
-        }
-        
-        <h2 className={styles.modalTitle}>¡Descubrí tu bono!</h2>
+        {isInstruction ? (
+          <BonusInstructions onClose={onCloseInstructios} />
+        ) : (
+          <>
+            {!winner && (
+              <button className={styles.closeButton} onClick={onClose}>
+                <FaTimes />
+              </button>
+            )}
 
-        <section className={styles.containerGrid}>
-          <div className={styles.grid}>
-            {cards.map((card, index) => (
-              <BonusCard
-                key={card.id}
-                revealed={card.revealed}
-                label={card.label}
-                tier={card.tier}
-                onClick={() => handleCardClick(index)}
-              />
-            ))}
-          </div>
-        </section>
+            <h2 className={styles.modalTitle}>¡Descubrí tu bono!</h2>
 
-        {winner && (
-          <BonusWinner prize={winner} onClaim={() => handleClaim(winner)} />
+            <section className={styles.containerGrid}>
+              <div className={styles.grid}>
+                {cards.map((card, index) => (
+                  <BonusCard
+                    key={card.id}
+                    revealed={card.revealed}
+                    label={card.label}
+                    tier={card.tier}
+                    onClick={() => handleCardClick(index)}
+                  />
+                ))}
+              </div>
+            </section>
+
+            {winner && (
+              <BonusWinner prize={winner} onClaim={() => handleClaim(winner)} />
+            )}
+          </>
         )}
       </div>
     </div>
