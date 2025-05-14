@@ -27,10 +27,13 @@
 }
 
 .tip {
+  display: flex;
   margin-top: 1rem;
   font-style: italic;
   color: var(--icon-green);
   font-size: 0.9rem;
+  flex-direction: row;
+  justify-content: center;
 }
 
 /* Botón de cierre */
@@ -45,6 +48,12 @@
   cursor: pointer;
   padding: 4px;
 }
+.containerPlayButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 
 /* Estilos específicos para móviles hasta 440px */
 @media (max-width: 440px) {

@@ -36,7 +36,7 @@ const ProfilePage = () => {
           <InfoCardItem icon={<FaUser />} label="Nombre" value={user.name} />
           <InfoCardItem
             icon={<FaWallet />}
-            label="Fondo acumulado"
+            label="Tu Fondo de la Suerte"
             value={`$${raffleFund}`}
           />
         </div>
