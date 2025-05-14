@@ -65,11 +65,18 @@ const Home = () => {
               <h2 className={styles.welcome}>¡Bienvenido, {data.userName}!</h2>
               <InfoCardItem
                 icon={<FaWallet />}
-                label="Fondo acumulado"
+                label="Tu Fondo de la Suerte"
                 value={`$${Number(accumulatedFund).toLocaleString("es-AR", {
                   minimumFractionDigits: 2,
                 })}`}
               />
+               <br/>
+                <InfoCardItem
+                 icon={<FaGift />}
+                 label="Bonus del día"
+                 value={isLastPlayed ? "Ya jugaste hoy. Volvé mañana para intentarlo de nuevo." : "Reclama tu bonus del día"}
+                 onClick={modalBonus}
+               />
             </section>
 
             <section className={styles.tournaments}>
@@ -114,15 +121,6 @@ const Home = () => {
                   </div>
                 ))
               )}
-            </section>
-
-            <section className={styles.bonus}>
-              <InfoCardItem
-                icon={<FaGift />}
-                label="Bonus del día"
-                value={isLastPlayed ? "Ya jugaste hoy. Volvé mañana para intentarlo de nuevo." : "Reclama tu bonus del día"}
-                onClick={modalBonus}
-              />
             </section>
           </div>
           {isBonus ? (

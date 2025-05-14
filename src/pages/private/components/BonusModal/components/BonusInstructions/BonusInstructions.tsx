@@ -21,6 +21,9 @@ const BonusInstructions = ({ onClose }: BonusInstructionsProps) => {
       <p className={styles.tip}>
         <strong>Ojo:</strong> ¡Jugá una vez por día!
       </p>
+      <div className={styles.containerPlayButton}>
+        <button className={styles.playButton} onClick={onClose}>¡Jugar!</button>
+      </div>
     </div>
   );
 };
