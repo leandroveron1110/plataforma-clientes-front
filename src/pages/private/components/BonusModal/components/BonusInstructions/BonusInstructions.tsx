@@ -1,4 +1,5 @@
 // BonusInstructions.tsx
+import Button from "../../../../../../components/Button/Button";
 import styles from "./BonusInstructions.module.css";
 import { FaTimes } from "react-icons/fa";
 
@@ -22,7 +23,7 @@ const BonusInstructions = ({ onClose }: BonusInstructionsProps) => {
         <strong>Ojo:</strong> ¡Jugá una vez por día!
       </p>
       <div className={styles.containerPlayButton}>
-        <button className={styles.playButton} onClick={onClose}>¡Jugar!</button>
+        <Button name={"COMENZAR"} onClick={onClose} />
       </div>
     </div>
   );

@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import styles from "./BonusModal.module.css";
-import BonusCard from "./components/BonusCard/BonusCard";
 import BonusWinner from "./components/BonusWinner/BonusWinner";
 import BonusInstructions from "./components/BonusInstructions/BonusInstructions";
+import BonusTierInfo from "./components/BonusTierInfo/BonusTierInfo";
+import BonusCoin from "./components/BonusCard/BonusCoin";
 
 interface BonusPrize {
   label: string;
-  tier: "min" | "majo" | "maxi" | "mega" | "gold";
+  tier: "min" | "minor"| "majo" | "maxi" | "mega" | "gold";
   weight: number; // cantidad de veces que puede aparecer
 }
 
@@ -35,13 +36,13 @@ const shuffleArray = <T,>(array: T[]): T[] => {
 const BonusGameModal = ({ onClose, prizes }: BonusGameModalProps) => {
   const [cards, setCards] = useState<Card[]>([]);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
-  const [winner, setWinner] = useState<string | null>(null);
+  const [winner, setWinner] = useState<{ label: string; tier: BonusPrize["tier"] } | null>(null);
   const [isInstruction, setIsInstruction] = useState<boolean>(true);
 
   useEffect(() => {
     const generated: Card[] = [];
 
-    prizes.forEach((prize, _index) => {
+    prizes.forEach((prize) => {
       for (let i = 0; i < prize.weight; i++) {
         generated.push({
           id: generated.length,
@@ -66,40 +67,39 @@ const BonusGameModal = ({ onClose, prizes }: BonusGameModalProps) => {
     const newFlipped = [...flippedCards, index];
     setFlippedCards(newFlipped);
 
-    // Agrupar por label
     const labelCount: Record<string, number> = {};
     newFlipped.forEach((i) => {
       const label = updatedCards[i].label;
       labelCount[label] = (labelCount[label] || 0) + 1;
       if (labelCount[label] === 3) {
-        // window.scrollTo({ top: 0, behavior: "smooth" });
-        setWinner(label);
+        const { tier } = updatedCards[i];
+        setWinner({ label, tier });
       }
     });
   };
 
   const handleClaim = (prize: string) => {
-    const phone = "5493442622763";
+     localStorage.setItem("bonusGameLastPlayed", new Date().toDateString());
+    const phone = "5493442672449";
     const message = encodeURIComponent(
       `¡Hola! Quiero reclamar mi premio del juego de bonos. Me salió: ${prize}`
     );
     const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
 
-    // Abrir WhatsApp
     window.open(whatsappUrl, "_blank");
 
     setWinner(null);
-    localStorage.setItem("bonusGameLastPlayed", new Date().toDateString());
+   
     onClose();
   };
 
-  const onCloseInstructios = ()=> setIsInstruction(false)
+  const onCloseInstructions = () => setIsInstruction(false);
 
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modal}>
         {isInstruction ? (
-          <BonusInstructions onClose={onCloseInstructios} />
+          <BonusInstructions onClose={onCloseInstructions} />
         ) : (
           <>
             {!winner && (
@@ -108,15 +108,15 @@ const BonusGameModal = ({ onClose, prizes }: BonusGameModalProps) => {
               </button>
             )}
 
-            <h2 className={styles.modalTitle}>¡Descubrí tu bono!</h2>
+            <BonusTierInfo prizes={prizes} winner={winner?.label ?? null} />
 
             <section className={styles.containerGrid}>
               <div className={styles.grid}>
                 {cards.map((card, index) => (
-                  <BonusCard
+                  <BonusCoin
                     key={card.id}
                     revealed={card.revealed}
-                    label={card.label}
+                    value={card.label}
                     tier={card.tier}
                     onClick={() => handleCardClick(index)}
                   />
@@ -125,7 +125,11 @@ const BonusGameModal = ({ onClose, prizes }: BonusGameModalProps) => {
             </section>
 
             {winner && (
-              <BonusWinner prize={winner} onClaim={() => handleClaim(winner)} />
+              <BonusWinner
+                prize={winner.label}
+                tier={winner.tier}
+                onClaim={() => handleClaim(winner.label)}
+              />
             )}
           </>
         )}

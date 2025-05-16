@@ -54,6 +54,10 @@
   justify-content: center;
 }
 
+.playButton {
+  width: 100%;
+  background-color: var(--title-pink);
+}
 
 /* Estilos específicos para móviles hasta 440px */
 @media (max-width: 440px) {

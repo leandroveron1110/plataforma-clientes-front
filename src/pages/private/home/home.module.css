@@ -6,7 +6,6 @@
   line-height: 1.5;
   padding: 1.5rem;
   max-width: 500px;
-  width: 100vw; /* Asegura que ocupe todo el ancho disponible */
   margin: auto;
   min-height: 100vh;
   background: var(--background-color);
