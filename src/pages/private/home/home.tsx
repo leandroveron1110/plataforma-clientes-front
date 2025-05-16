@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./home.module.css";
-import { FaGift, FaWallet } from "react-icons/fa";
+import { FaWallet } from "react-icons/fa";
 import homeService, {
   Tournament,
   UserTournamentSummary,
@@ -12,6 +12,7 @@ import InfoCardItem from "../components/InfoCardItem/InfoCardItem";
 import Loader from "../../../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
 import BonusGameModal from "../components/BonusModal/BonusModal";
+import InfoCard from "../components/InfoCard/InfoCard";
 
 const Home = () => {
   const [data, setData] = useState<UserTournamentSummary | null>(null);
@@ -52,7 +53,9 @@ const Home = () => {
 
   const accumulatedFund = (data.totalDeposits * 0.1).toFixed(2);
 
-  const modalBonus = () => {if(!isLastPlayed) setIsBonus(!isBonus);}
+  const modalBonus = () => {
+    if (!isLastPlayed) setIsBonus(!isBonus);
+  };
 
   return (
     <>
@@ -70,13 +73,19 @@ const Home = () => {
                   minimumFractionDigits: 2,
                 })}`}
               />
-               <br/>
-                <InfoCardItem
-                 icon={<FaGift />}
-                 label="Bonus del día"
-                 value={isLastPlayed ? "Ya jugaste hoy. Volvé mañana para intentarlo de nuevo." : "Reclama tu bonus del día"}
-                 onClick={modalBonus}
-               />
+              <br />
+              <InfoCard
+                label="Bonus del día"
+                value={
+                  isLastPlayed
+                    ? "Ya jugaste hoy. Volvé mañana para intentarlo de nuevo."
+                    : "Reclama tu bonus del día jugando"
+                }
+                button={{
+                  name: "Jugar",
+                  onClick: modalBonus,
+                }}
+              />
             </section>
 
             <section className={styles.tournaments}>
@@ -126,21 +135,20 @@ const Home = () => {
           {isBonus ? (
             <BonusGameModal
               prizes={[
-                // Tier: MIN (comunes) – 9 cartas
-                { label: "5% Bonus", tier: "min", weight: 3 },
-                { label: "+3 Puntos", tier: "min", weight: 3 },
 
-                // Tier: MAJO (intermedios) – 3 cartas
+                { label: "5% Bonus", tier: "min", weight: 4 },
+
+                { label: "10% Bonus", tier: "minor", weight: 4 },
+
                 { label: "15% Bonus", tier: "majo", weight: 3 },
-                { label: "$1k Fichas", tier: "majo", weight: 1 },
-                { label: "+5 Puntos", tier: "majo", weight: 3 },
 
-                // Tier: MAXI – 2 cartas
-                { label: "45% Bonus", tier: "maxi", weight: 2 },
-                { label: "$3k Fichas", tier: "maxi", weight: 2 },
 
-                // Tier: GOLD – 1 carta (muy raro, pero posible)
-                { label: "🎖️ BONUS LEGENDARIO", tier: "gold", weight: 1 },
+                { label: "20% Bonus", tier: "maxi", weight: 3 }, 
+
+                { label: "60% Bonus", tier: "mega", weight: 2 },
+
+
+                { label: "100% Bonus", tier: "gold", weight: 2 }, 
               ]}
               onClose={modalBonus}
             />
