@@ -23,6 +23,17 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const lastPlayed = localStorage.getItem("bonusGameLastPlayed");
+    const today = new Date().toDateString();
+
+    console.log(lastPlayed);
+
+    if (lastPlayed === today) {
+      setIsLastPlayed(true);
+    }
+  }, [isLastPlayed]);
+
+  useEffect(() => {
     const fetchData = async () => {
       if (user) {
         const service = homeService.crud();
@@ -54,7 +65,21 @@ const Home = () => {
   const accumulatedFund = (data.totalDeposits * 0.1).toFixed(2);
 
   const modalBonus = () => {
-    if (!isLastPlayed) setIsBonus(!isBonus);
+    const today = new Date().toDateString();
+    const lastPlayed = localStorage.getItem("bonusGameLastPlayed");
+
+    // Si ya jugó hoy y quiere abrir el modal, no lo permitimos
+    if (!isBonus && lastPlayed === today) {
+      setIsLastPlayed(true);
+      return;
+    }
+
+    // Si está cerrando el modal y jugó, actualizamos el estado
+    if (isBonus && lastPlayed === today) {
+      setIsLastPlayed(true);
+    }
+
+    setIsBonus(!isBonus);
   };
 
   return (
@@ -81,10 +106,14 @@ const Home = () => {
                     ? "Ya jugaste hoy. Volvé mañana para intentarlo de nuevo."
                     : "Reclama tu bonus del día jugando"
                 }
-                button={{
-                  name: "Jugar",
-                  onClick: modalBonus,
-                }}
+                button={
+                  isLastPlayed
+                    ? undefined
+                    : {
+                        name: "Jugar",
+                        onClick: modalBonus,
+                      }
+                }
               />
             </section>
 
@@ -135,20 +164,17 @@ const Home = () => {
           {isBonus ? (
             <BonusGameModal
               prizes={[
-
                 { label: "5% Bonus", tier: "min", weight: 4 },
 
                 { label: "10% Bonus", tier: "minor", weight: 4 },
 
                 { label: "15% Bonus", tier: "majo", weight: 3 },
 
-
-                { label: "20% Bonus", tier: "maxi", weight: 3 }, 
+                { label: "20% Bonus", tier: "maxi", weight: 3 },
 
                 { label: "60% Bonus", tier: "mega", weight: 2 },
 
-
-                { label: "100% Bonus", tier: "gold", weight: 2 }, 
+                { label: "100% Bonus", tier: "gold", weight: 2 },
               ]}
               onClose={modalBonus}
             />
