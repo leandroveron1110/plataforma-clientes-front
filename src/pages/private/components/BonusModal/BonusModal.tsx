@@ -73,13 +73,13 @@ const BonusGameModal = ({ onClose, prizes }: BonusGameModalProps) => {
       labelCount[label] = (labelCount[label] || 0) + 1;
       if (labelCount[label] === 3) {
         const { tier } = updatedCards[i];
+        localStorage.setItem("bonusGameLastPlayed", new Date().toDateString());
         setWinner({ label, tier });
       }
     });
   };
 
   const handleClaim = (prize: string) => {
-     localStorage.setItem("bonusGameLastPlayed", new Date().toDateString());
     const phone = "5493442672449";
     const message = encodeURIComponent(
       `¡Hola! Quiero reclamar mi premio del juego de bonos. Me salió: ${prize}`
