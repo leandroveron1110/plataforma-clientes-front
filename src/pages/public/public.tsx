@@ -4,7 +4,7 @@ import RoutesWithNotFound from "../../utilities/RoutesWithNotFound.utility";
 import { PublicRoutes } from "../../routes/routes";
 
 const Login = lazy(() => import("./Login/Login"));
-const Benefits = lazy(() => import("./Benefits/Benefits"));
+// const Benefits = lazy(() => import("./Benefits/Benefits"));
 const KeepAlive = lazy(() => import("./KeepAlive/KeepAlive"));
 const AffiliateLevelOne = lazy(() => import("./AffiliateSystem/AffiliateProgram"));
 
