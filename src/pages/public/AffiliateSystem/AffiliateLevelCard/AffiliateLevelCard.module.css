@@ -1,0 +1,230 @@
+:root {
+  --background-color: #141018;
+  --title-pink: #f5189e;
+  --text-white: #eff5e9;
+  --icon-green: #00ff99;
+  --icon-blue: #1873f5;
+  --color-gris: #222122;
+  --color-orange: #f5ac18;
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background-color: var(--background-color);
+  color: var(--text-white);
+  font-family: "Segoe UI", sans-serif;
+  animation: fadeIn 1s ease-in;
+}
+
+.title {
+  font-size: 2rem;
+  color: var(--title-pink);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.highlight {
+  color: var(--icon-green);
+  font-weight: bold;
+}
+
+.card {
+  background-color: var(--color-gris);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  animation: floatUp 1s ease-in;
+}
+
+.levelTitle {
+  color: var(--title-pink);
+  text-align: center;
+  margin: 40px 10px;
+  font-size: 2.6rem;
+}
+
+.rules {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 0;
+}
+
+.infoCard {
+  background-color: #1d1b20;
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.infoCard:hover {
+  transform: scale(1.02);
+  background-color: #2a272f;
+}
+
+.infoIcon {
+  font-size: 1.6rem;
+  color: var(--icon-blue);
+  animation: pulse 2s infinite;
+}
+
+.infoText {
+  color: var(--text-white);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+
+.example {
+  background-color: var(--color-gris);
+  border-radius: 12px;
+  /* padding: 1rem; */
+  animation: fadeIn 1.5s ease-in;
+}
+
+.exampleTitle {
+  color: var(--icon-green);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+/* Contenedor para tabla con scroll */
+.tableWrapper {
+  max-height: calc(10 * 2.5rem); /* 10 filas de aprox 2.5rem altura c/u */
+  overflow-y: auto;
+  border-radius: 8px;
+}
+
+/* Para que la tabla tome todo el ancho dentro del wrapper */
+.tableWrapper .table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+/* Opcional: fijar altura mínima para filas para cálculo más estable */
+.table th,
+.table td {
+  padding: 0.5rem;
+  text-align: left;
+  height: 2.5rem; /* altura fija para cada fila */
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid var(--title-pink);
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.total {
+  font-size: 1.1rem;
+  text-align: right;
+  color: var(--title-pink);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.range {
+  font-size: 1rem;
+  color: var(--text-white);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.highlight {
+  color: var(--icon-green);
+  font-weight: bold;
+}
+
+.totalsGrid {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.totalCard {
+  flex: 1 1 calc(33% - 1rem);
+  background-color: #1d1a26;
+  padding: 1rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.totalCard:hover {
+  transform: translateY(-5px);
+}
+
+.totalIcon {
+  font-size: 2rem;
+  color: var(--title-pink); /* O algún color destacado */
+  margin-bottom: 0.5rem;
+}
+
+
+.totalLabel {
+  color: var(--text-white);
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.totalValue {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--title-pink);
+}
+
