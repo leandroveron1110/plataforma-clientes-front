@@ -9,12 +9,39 @@ type Props = {
 };
 
 const AffiliateLevelCard: React.FC<Props> = ({ level }) => {
-  const totalDaily = level.examples.reduce(
-    (sum, e) => sum + e.deposit * (level.percentage / 100),
+// Variación aleatoria diaria, por ejemplo ±10%
+const simulateDaily = (deposit: number) => {
+  const variation = 0.2; // 10% de variación
+  const randomFactor = 1 + (1 * variation * 2 - variation);
+  return deposit * randomFactor;
+};
+
+// Total diario original (como referencia)
+const totalDaily = level.examples.reduce(
+  (sum, e) => sum + e.deposit * (level.percentage / 100),
+  0
+);
+
+// Simular valores para 14 días (2 semanas)
+const totalWeekly = Array.from({ length: 7 }).reduce((sum: number) => {
+  const dailyTotal = level.examples.reduce(
+    (daySum, e) => daySum + simulateDaily(e.deposit) * (level.percentage / 100),
     0
   );
-  const totalWeekly = totalDaily * 7;
-  const totalMonthly = totalDaily * 30;
+  return sum + dailyTotal;
+}, 0);
+
+// Simular valores para 60 días (2 meses)
+const totalMonthly = Array.from({ length: 30 }).reduce((sum: number) => {
+  const dailyTotal = level.examples.reduce(
+    (daySum, e) => daySum + simulateDaily(e.deposit) * (level.percentage / 100),
+    0
+  );
+  return sum + dailyTotal;
+}, 0);
+
+console.log({ totalDaily, totalWeekly, totalMonthly });
+
 
   const InfoItem = (rule: Rules) => (
     <div className={styles.infoCard}>

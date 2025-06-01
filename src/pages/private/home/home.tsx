@@ -13,6 +13,7 @@ import Loader from "../../../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
 import BonusGameModal from "../components/BonusModal/BonusModal";
 import InfoCard from "../components/InfoCard/InfoCard";
+import { Item } from "../../../utilities/localSorage";
 
 interface BonusPrize {
   label: string;
@@ -34,7 +35,7 @@ const Home = () => {
   const [prizesLuckyFound, setPrizesLuckyFound] = useState<BonusPrize[]>([]);
 
   useEffect(() => {
-    const lastPlayed = localStorage.getItem("bonusGameLastPlayed");
+    const lastPlayed = localStorage.getItem(Item.BONUS_GAME_LAST_PLAYED);
     const today = new Date().toDateString();
 
     if (lastPlayed === today) {
@@ -43,7 +44,7 @@ const Home = () => {
   }, [isLastPlayed]);
 
   useEffect(() => {
-    const lastPlayed = localStorage.getItem("luckyFoundGameLastPlayed");
+    const lastPlayed = localStorage.getItem(Item.LUCKY_FOUND_GAME_LAST_PLAYED);
 
     if (lastPlayed) {
       // Hay datos: Ya jugó
@@ -167,7 +168,7 @@ const Home = () => {
 
   const modalBonus = () => {
     const today = new Date().toDateString();
-    const lastPlayed = localStorage.getItem("bonusGameLastPlayed");
+    const lastPlayed = localStorage.getItem(Item.BONUS_GAME_LAST_PLAYED);
 
     // Si ya jugó hoy y quiere abrir el modal, no lo permitimos
     if (!isBonus && lastPlayed === today) {
@@ -185,7 +186,7 @@ const Home = () => {
 
   const modalLuckyFound = () => {
     const today = new Date().toDateString();
-    const lastPlayed = localStorage.getItem("luckyFoundGameLastPlayed");
+    const lastPlayed = localStorage.getItem(Item.LUCKY_FOUND_GAME_LAST_PLAYED);
 
     // Si ya jugó hoy y quiere abrir el modal, no lo permitimos
     if (!isLuckyFound && lastPlayed === today) {
