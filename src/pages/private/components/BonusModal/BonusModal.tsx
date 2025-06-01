@@ -15,6 +15,7 @@ interface BonusPrize {
 interface BonusGameModalProps {
   onClose: () => void;
   prizes: BonusPrize[];
+  localSotre: string;
 }
 
 interface Card {
@@ -33,7 +34,7 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   return arr;
 };
 
-const BonusGameModal = ({ onClose, prizes }: BonusGameModalProps) => {
+const BonusGameModal = ({ onClose, prizes, localSotre }: BonusGameModalProps) => {
   const [cards, setCards] = useState<Card[]>([]);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const [winner, setWinner] = useState<{ label: string; tier: BonusPrize["tier"] } | null>(null);
@@ -73,7 +74,7 @@ const BonusGameModal = ({ onClose, prizes }: BonusGameModalProps) => {
       labelCount[label] = (labelCount[label] || 0) + 1;
       if (labelCount[label] === 3) {
         const { tier } = updatedCards[i];
-        localStorage.setItem("bonusGameLastPlayed", new Date().toDateString());
+        localStorage.setItem(localSotre, new Date().toDateString());
         setWinner({ label, tier });
       }
     });

@@ -26,7 +26,7 @@ const coinImages: Record<string, string> = {
   gold: imgRed,              // máximo valor
 };
 
-const BonusCoin = ({ revealed, value, tier, onClick }: BonusCoinProps) => {
+const BonusCoin = ({ revealed, tier, onClick }: BonusCoinProps) => {
   return (
     <div className={styles.flipCardWrapper} onClick={onClick}>
       <div
@@ -46,7 +46,7 @@ const BonusCoin = ({ revealed, value, tier, onClick }: BonusCoinProps) => {
                 alt="Moneda revelada"
                 className={`${styles.coinImage} ${styles[`tier-${tier}`]}`}
               />
-              <span className={styles.coinValue}>{value}</span>
+              <span className={styles.coinValue}>{tier.toUpperCase()}</span>
             </>
           )}
         </div>
