@@ -44,10 +44,13 @@ const Home = () => {
 
   useEffect(() => {
     const lastPlayed = localStorage.getItem("luckyFoundGameLastPlayed");
-    const today = new Date().toDateString();
 
-    if (lastPlayed === today) {
+    if (lastPlayed) {
+      // Hay datos: Ya jugó
       setIsLastPlayedLuckyFound(true);
+    } else {
+      // No hay datos: No ha jugado, puede jugar
+      setIsLastPlayedLuckyFound(false);
     }
   }, [isLastPlayedLuckyFound]);
 
@@ -73,8 +76,12 @@ const Home = () => {
       setIsLastPlayed(true);
     }
 
-    if (lastPlayed2 === today) {
+    if (lastPlayed2) {
+      // Hay datos: Ya jugó
       setIsLastPlayedLuckyFound(true);
+    } else {
+      // No hay datos: No ha jugado, puede jugar
+      setIsLastPlayedLuckyFound(false);
     }
 
     fetchData();
@@ -211,7 +218,7 @@ const Home = () => {
                 })}`}
                 value={
                   isLastPlayedLuckyFound
-                    ? "Ya jugaste hoy."
+                    ? "Tu Fondo de la Suerte ya fue reclamado."
                     : "Reclama tu Tu Fondo de la Suerte"
                 }
                 button={
@@ -320,11 +327,13 @@ const Home = () => {
               prizes={prizesLuckyFound}
               onClose={modalLuckyFound}
               localSotre="luckyFoundGameLastPlayed"
-              fondo={user ? `${Number(
-                  accumulatedFund
-                ).toLocaleString("es-AR", {
-                  minimumFractionDigits: 2,
-                })}`: ``}
+              fondo={
+                user
+                  ? `${Number(accumulatedFund).toLocaleString("es-AR", {
+                      minimumFractionDigits: 2,
+                    })}`
+                  : ``
+              }
             />
           ) : (
             <></>
