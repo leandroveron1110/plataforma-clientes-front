@@ -81,14 +81,14 @@ const Home = () => {
   }, [user]);
 
   const generatePrizes = (balance: number): BonusPrize[] => {
-const basePrizes: Omit<BonusPrize, "weight">[] = [
-  { label: "5%", tier: "min" },
-  { label: "10%", tier: "minor" },
-  { label: "20%", tier: "majo" },
-  { label: "50%", tier: "maxi" },
-  { label: "100%", tier: "mega" },
-  { label: "200%", tier: "gold" },
-];
+    const basePrizes: Omit<BonusPrize, "weight">[] = [
+      { label: "5%", tier: "min" },
+      { label: "10%", tier: "minor" },
+      { label: "20%", tier: "majo" },
+      { label: "50%", tier: "maxi" },
+      { label: "100%", tier: "mega" },
+      { label: "200%", tier: "gold" },
+    ];
 
     let prizesDistribution: Record<BonusPrize["tier"], number> = {
       min: 0,
@@ -320,6 +320,11 @@ const basePrizes: Omit<BonusPrize, "weight">[] = [
               prizes={prizesLuckyFound}
               onClose={modalLuckyFound}
               localSotre="luckyFoundGameLastPlayed"
+              fondo={user ? `${Number(
+                  accumulatedFund
+                ).toLocaleString("es-AR", {
+                  minimumFractionDigits: 2,
+                })}`: ``}
             />
           ) : (
             <></>

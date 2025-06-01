@@ -8,7 +8,7 @@ import BonusCoin from "./components/BonusCard/BonusCoin";
 
 interface BonusPrize {
   label: string;
-  tier: "min" | "minor"| "majo" | "maxi" | "mega" | "gold";
+  tier: "min" | "minor" | "majo" | "maxi" | "mega" | "gold";
   weight: number; // cantidad de veces que puede aparecer
 }
 
@@ -16,6 +16,7 @@ interface BonusGameModalProps {
   onClose: () => void;
   prizes: BonusPrize[];
   localSotre: string;
+  fondo?: string;
 }
 
 interface Card {
@@ -34,10 +35,18 @@ const shuffleArray = <T,>(array: T[]): T[] => {
   return arr;
 };
 
-const BonusGameModal = ({ onClose, prizes, localSotre }: BonusGameModalProps) => {
+const BonusGameModal = ({
+  onClose,
+  prizes,
+  localSotre,
+  fondo,
+}: BonusGameModalProps) => {
   const [cards, setCards] = useState<Card[]>([]);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
-  const [winner, setWinner] = useState<{ label: string; tier: BonusPrize["tier"] } | null>(null);
+  const [winner, setWinner] = useState<{
+    label: string;
+    tier: BonusPrize["tier"];
+  } | null>(null);
   const [isInstruction, setIsInstruction] = useState<boolean>(true);
 
   useEffect(() => {
@@ -82,15 +91,19 @@ const BonusGameModal = ({ onClose, prizes, localSotre }: BonusGameModalProps) =>
 
   const handleClaim = (prize: string) => {
     const phone = "5493442672449";
-    const message = encodeURIComponent(
-      `¡Hola! Quiero reclamar mi premio del juego de bonos. Me salió: ${prize}`
-    );
+    let mensaje = "";
+    if (fondo) {
+      mensaje = `Me toca el ${prize} de mi fondo acumulado de ${fondo}`;
+    } else {
+      mensaje = `¡Hola! Quiero reclamar mi premio del juego de bonos. Me salió: ${prize}`;
+    }
+    const message = encodeURIComponent(mensaje);
     const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
 
     window.open(whatsappUrl, "_blank");
 
     setWinner(null);
-   
+
     onClose();
   };
 
