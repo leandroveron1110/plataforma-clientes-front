@@ -226,7 +226,7 @@ const Home = () => {
                   isLastPlayedLuckyFound
                     ? undefined
                     : {
-                        name: "Jugar",
+                        name: "Reclamar",
                         onClick: modalLuckyFound,
                       }
                 }
