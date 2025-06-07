@@ -35,9 +35,9 @@ const Header = () => {
       ]
     : [
         {
-          path: `/${PublicRoutes.PUBLIC}/${PublicRoutes.BENEFITS}`,
-          label: "Ganar Más",
-          icon: <FaGift />,
+          path: `/${PublicRoutes.PUBLIC}/${PublicRoutes.HOME}`,
+          label: "Home",
+          icon: <FaHome />,
         },
         {
           path: `/${PublicRoutes.PUBLIC}/${PublicRoutes.LOGIN}`,

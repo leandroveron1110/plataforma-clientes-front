@@ -1,5 +1,6 @@
 export const PublicRoutes = {
   PUBLIC: "casino",
+  HOME: "home",
   LOGIN: "login",
   BENEFITS: "formas-de-ganar",
   GAME_FUND_ACCUMULATED: "game-found",
@@ -7,7 +8,7 @@ export const PublicRoutes = {
 };
 
 export const PrivateRoutes = {
-  PRIVATE: "casino-plataforma",
+  PRIVATE: "kuty",
   HOME: "home",
   LEVELS: "level",
   TOURNAMENT: "tournament",

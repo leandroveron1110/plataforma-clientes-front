@@ -74,7 +74,7 @@ const Login = () => {
               type="button"
               className={styles.backButton}
               onClick={() =>
-                navigate(`/${PublicRoutes.PUBLIC}/${PublicRoutes.BENEFITS}`)
+                navigate(`/${PublicRoutes.PUBLIC}/${PublicRoutes.HOME}`)
               }
             >
               <FiArrowLeft className={styles.backIcon} />

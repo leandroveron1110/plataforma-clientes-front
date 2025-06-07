@@ -5,7 +5,9 @@ import { PrivateRoutes } from "../../routes/routes";
 
 const Home = lazy(() => import("./home/home"));
 const Tournament = lazy(() => import("./tournament/Tournament"));
-const TournamentDetail = lazy(() => import("./tournament/tournamentDetail/TournamentDetail"));
+const TournamentDetail = lazy(
+  () => import("./tournament/tournamentDetail/TournamentDetail")
+);
 const ProfilePage = lazy(() => import("./ProfilePage/ProfilePage"));
 
 function Private() {
@@ -17,10 +19,8 @@ function Private() {
       <Route path={`${PrivateRoutes.TOURNAMENT}`}>
         <Route index element={<Tournament />} />
         <Route path={`:id`} element={<TournamentDetail />} />
-
       </Route>
       <Route path={`${PrivateRoutes.PROFILE}`} element={<ProfilePage />} />
-
     </RoutesWithNotFound>
   );
 }
