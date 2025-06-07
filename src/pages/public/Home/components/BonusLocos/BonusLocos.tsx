@@ -11,12 +11,13 @@ const BonusLocos = () => {
       </p>
 
       <div className={styles.bonusList}>
-        <div><FaCoins /><span>$100 – $999</span><span className={styles.percent}>+10%</span></div>
-        <div><FaCoins /><span>$1.000 – $4.999</span><span className={styles.percent}>+20%</span></div>
-        <div><FaCoins /><span>$5.000 – $9.999</span><span className={styles.percent}>+30%</span></div>
-        <div><FaCoins /><span>$10.000 – $19.999</span><span className={styles.percent}>+40%</span></div>
-        <div><FaCoins /><span>$20.000 – $29.999</span><span className={styles.percent}>+50%</span></div>
-        <div><FaGift /><span>$30.000 o más</span><span className={styles.percent}>+60%</span></div>
+        <div><FaCoins /><span>$100 – $999</span><span className={styles.percent}>+5%</span></div>
+        <div><FaCoins /><span>$1.000 – $4.999</span><span className={styles.percent}>+10%</span></div>
+        <div><FaCoins /><span>$5.000 – $9.999</span><span className={styles.percent}>+20%</span></div>
+        <div><FaCoins /><span>$10.000 – $14.999</span><span className={styles.percent}>+30%</span></div>
+        <div><FaCoins /><span>$15.000 – $24.999</span><span className={styles.percent}>+40%</span></div>
+        <div><FaCoins /><span>$25.000 – $39.999</span><span className={styles.percent}>+50%</span></div>
+        <div><FaGift /><span>$40.000 o más</span><span className={styles.percent}>+60%</span></div>
       </div>
 
       <p className={styles.footer}>
