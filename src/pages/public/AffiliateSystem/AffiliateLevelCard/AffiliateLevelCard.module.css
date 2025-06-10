@@ -1,163 +1,132 @@
 :root {
-  --background-color: #141018;
-  --title-pink: #f5189e;
-  --text-white: #eff5e9;
-  --icon-green: #00ff99;
-  --icon-blue: #1873f5;
-  --color-gris: #222122;
-  --color-orange: #f5ac18;
-}
-
-.container {
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 1.5rem;
-  background-color: var(--background-color);
-  color: var(--text-white);
-  font-family: "Segoe UI", sans-serif;
-  animation: fadeIn 1s ease-in;
-}
-
-.title {
-  font-size: 2rem;
-  color: var(--title-pink);
-  text-align: center;
-  margin-bottom: 0.5rem;
-}
-
-.subtitle {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.highlight {
-  color: var(--icon-green);
-  font-weight: bold;
+  --background-color: #121212;
+  --title-color: #ff3cac;
+  --text-color: #ffffff;
+  --icon-green: #00ffa3;
+  --icon-blue: #1e90ff;
+  --card-bg: #201e1f;
+  --highlight: #ffaf40;
+  --cta-bg: linear-gradient(135deg, #ff3cac 0%, #784ba0 100%);
 }
 
 .card {
-  background-color: var(--color-gris);
-  border-radius: 12px;
-  padding: 1rem;
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 2rem;
   margin-bottom: 2rem;
-  animation: floatUp 1s ease-in;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  animation: fadeIn 0.8s ease-in-out;
+  max-width: 600px;
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
 }
 
 .levelTitle {
-  color: var(--title-pink);
+  color: var(--title-color);
   text-align: center;
-  margin: 40px 10px;
-  font-size: 2.6rem;
+  margin-bottom: 2rem;
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 .rules {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
-  margin-bottom: 1rem;
-  padding: 0;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 
 .infoCard {
-  background-color: #1d1b20;
+  background-color: #242424;
   padding: 1rem;
-  border-radius: 10px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  gap: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  flex: 1 1 45%;
+  min-width: 200px;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
-
 .infoCard:hover {
-  transform: scale(1.02);
-  background-color: #2a272f;
+  background: #2c2c2c;
+  transform: scale(1.03);
 }
 
 .infoIcon {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   color: var(--icon-blue);
-  animation: pulse 2s infinite;
+  animation: pulse 3s infinite;
 }
 
 .infoText {
-  color: var(--text-white);
-  font-size: 1rem;
+  color: var(--text-color);
+  font-size: 1.1rem;
   font-weight: 500;
 }
 
+.totalsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
 
-.example {
-  background-color: var(--color-gris);
+.totalCard {
+  flex: 1 1 30%;
+  background: #202020;
+  padding: 1.5rem;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease;
+}
+.totalCard:hover {
+  transform: translateY(-4px);
+  background: #2b2b2b;
+}
+
+.totalIcon {
+  font-size: 2.2rem;
+  color: var(--highlight);
+  margin-bottom: 0.5rem;
+}
+
+.totalLabel {
+  color: var(--text-color);
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.totalValue {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--highlight);
+}
+
+.callToAction {
+  margin-top: 2.5rem;
+  text-align: center;
+  background: var(--cta-bg);
+  color: #fff;
+  padding: 1rem 1.5rem;
   border-radius: 12px;
-  /* padding: 1rem; */
-  animation: fadeIn 1.5s ease-in;
-}
-
-.exampleTitle {
-  color: var(--icon-green);
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-}
-
-/* Contenedor para tabla con scroll */
-.tableWrapper {
-  max-height: calc(10 * 2.5rem); /* 10 filas de aprox 2.5rem altura c/u */
-  overflow-y: auto;
-  border-radius: 8px;
-}
-
-/* Para que la tabla tome todo el ancho dentro del wrapper */
-.tableWrapper .table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 1rem;
-}
-
-/* Opcional: fijar altura mínima para filas para cálculo más estable */
-.table th,
-.table td {
-  padding: 0.5rem;
-  text-align: left;
-  height: 2.5rem; /* altura fija para cada fila */
-  box-sizing: border-box;
-  white-space: nowrap;
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 1rem;
-}
-
-.table th,
-.table td {
-  border-bottom: 1px solid var(--title-pink);
-  padding: 0.5rem;
-  text-align: left;
-}
-
-.total {
+  font-weight: bold;
   font-size: 1.1rem;
-  text-align: right;
-  color: var(--title-pink);
+  cursor: pointer;
+  animation: bounce 2s infinite;
+  box-shadow: 0 4px 20px rgba(255, 63, 172, 0.4);
 }
 
+/* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes floatUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -171,60 +140,16 @@
     transform: scale(1);
   }
   50% {
-    transform: scale(1.2);
+    transform: scale(1.15);
   }
 }
 
-.range {
-  font-size: 1rem;
-  color: var(--text-white);
-  margin-bottom: 1rem;
-  text-align: center;
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }
-
-.highlight {
-  color: var(--icon-green);
-  font-weight: bold;
-}
-
-.totalsGrid {
-  display: flex;
-  gap: 1rem;
-  justify-content: space-between;
-  margin-top: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.totalCard {
-  flex: 1 1 calc(33% - 1rem);
-  background-color: #1d1a26;
-  padding: 1rem;
-  border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-  transition: transform 0.3s ease;
-}
-
-.totalCard:hover {
-  transform: translateY(-5px);
-}
-
-.totalIcon {
-  font-size: 2rem;
-  color: var(--title-pink); /* O algún color destacado */
-  margin-bottom: 0.5rem;
-}
-
-
-.totalLabel {
-  color: var(--text-white);
-  font-size: 1rem;
-  margin-bottom: 0.3rem;
-}
-
-.totalValue {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: var(--title-pink);
-}
-
