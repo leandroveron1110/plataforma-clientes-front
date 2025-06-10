@@ -2,7 +2,7 @@ export const PublicRoutes = {
   PUBLIC: "casino",
   HOME: "home",
   LOGIN: "login",
-  BENEFITS: "formas-de-ganar",
+  BENEFITS: "connet-wint",
   GAME_FUND_ACCUMULATED: "game-found",
   KEEP_ALIVE: "keep-alive"
 };
