@@ -385,8 +385,7 @@ const AffiliateProgram = () => {
       <section className={styles.program}>
         <h1 className={styles.title}>Conecta y ganá</h1>
         <p className={styles.subtitle}>
-          Únete a nuestro programa de afiliados y empieza a ganar comisiones por
-          cada referencia.
+          Unite a nuestro programa y empezá a ganar comisiones por cada conexión que realices.
         </p>
 
         <div className={styles.levelsContainer}>
