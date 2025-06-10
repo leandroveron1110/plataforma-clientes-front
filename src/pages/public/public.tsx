@@ -16,7 +16,6 @@ function PublicRoutesGroup() {
       <Route path={PublicRoutes.HOME} index element={<HomePage />} />
       <Route path={PublicRoutes.LOGIN} element={<LoginPage />} />
       <Route path={PublicRoutes.KEEP_ALIVE} element={<KeepAlivePage />} />
-
       <Route path={PublicRoutes.BENEFITS}>
         <Route index element={<AffiliateProgramPage />} />
         <Route path=":ref" element={<ReferralRedirectPage />} />
