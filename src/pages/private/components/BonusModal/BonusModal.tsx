@@ -5,6 +5,7 @@ import BonusWinner from "./components/BonusWinner/BonusWinner";
 import BonusInstructions from "./components/BonusInstructions/BonusInstructions";
 import BonusTierInfo from "./components/BonusTierInfo/BonusTierInfo";
 import BonusCoin from "./components/BonusCard/BonusCoin";
+import { sendWhatsapp } from "../../../../utilities/whatsapp";
 
 interface BonusPrize {
   label: string;
@@ -90,17 +91,14 @@ const BonusGameModal = ({
   };
 
   const handleClaim = (prize: string) => {
-    const phone = "5493442672449";
     let mensaje = "";
     if (fondo) {
       mensaje = `Me toca el ${prize} de mi fondo acumulado de ${fondo}`;
     } else {
       mensaje = `¡Hola! Quiero reclamar mi premio del juego de bonos. Me salió: ${prize}`;
     }
-    const message = encodeURIComponent(mensaje);
-    const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
 
-    window.open(whatsappUrl, "_blank");
+    sendWhatsapp(mensaje);
 
     setWinner(null);
 

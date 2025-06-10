@@ -3,6 +3,7 @@ import styles from "./AffiliateLevelCard.module.css";
 import { AffiliateLevel, Rules } from "../types/AffiliateLevel";
 import CountUp from "react-countup";
 import { LuCalendarCheck2, LuCalendarDays, LuCoins } from "react-icons/lu";
+import { sendWhatsapp } from "../../../../utilities/whatsapp";
 
 type Props = {
   level: AffiliateLevel;
@@ -97,12 +98,13 @@ const AffiliateLevelCard: React.FC<Props> = ({ level }) => {
 
       <div
         onClick={() => {
-          const phone = "5493442672449";
-          let mensaje = `Hola, me interesa el nivel "${level.title}". Vi que podría ganar hasta $${Math.round(totalMonthly).toLocaleString("es-AR")}/mes. ¿Cómo empiezo?`;
-          const message = encodeURIComponent(mensaje);
-          const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
-
-          window.open(whatsappUrl, "_blank");
+          sendWhatsapp(
+            `Hola, me interesa el nivel "${
+              level.title
+            }". Vi que podría ganar hasta $${Math.round(
+              totalMonthly
+            ).toLocaleString("es-AR")}/mes. ¿Cómo empiezo?`
+          );
         }}
         className={styles.callToAction}
       >
