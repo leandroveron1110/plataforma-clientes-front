@@ -1,5 +1,5 @@
 export const PublicRoutes = {
-  PUBLIC: "casino",
+  PUBLIC: "red-kuty",
   HOME: "home",
   LOGIN: "login",
   BENEFITS: "connet-wint",
