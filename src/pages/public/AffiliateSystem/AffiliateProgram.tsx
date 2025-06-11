@@ -3,6 +3,7 @@ import AffiliateLevelCard from "./AffiliateLevelCard/AffiliateLevelCard";
 import { FaClock, FaMoneyBillWave, FaUserPlus } from "react-icons/fa";
 import Header from "../../../components/Header/Header";
 import styles from "./AffiliateProgram.module.css";
+import Advantages from "./Advantages/Advantages";
 
 // const levels: AffiliateLevel[] = [
 //   {
@@ -387,6 +388,8 @@ const AffiliateProgram = () => {
         <p className={styles.subtitle}>
           Unite a nuestro programa y empezá a ganar comisiones por cada conexión que realices.
         </p>
+
+        <Advantages />
 
         <div className={styles.levelsContainer}>
           {conect.length > 0 ? (
