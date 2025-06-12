@@ -46,12 +46,14 @@ export default function Advantages() {
       <div className={styles.block}>
         <h3 className={styles.blockTitle}>¿Qué hago yo por vos?</h3>
         <ul className={styles.list}>
-              <li>
-      <FaCheckCircle className={styles.iconCheck} /> Me encargo de los pagos, premios y recargas
-    </li>
-    <li>
-      <FaCheckCircle className={styles.iconCheck} /> Atiendo mensajes, dudas y reclamos de los jugadores
-    </li>
+          <li>
+            <FaCheckCircle className={styles.iconCheck} /> Me encargo de los
+            pagos, premios y recargas
+          </li>
+          <li>
+            <FaCheckCircle className={styles.iconCheck} /> Atiendo mensajes,
+            dudas y reclamos de los jugadores
+          </li>
           <li>
             <FaCheckCircle className={styles.iconCheck} /> Verifico identidades
             y documentos si hace falta (KYC)
@@ -69,7 +71,8 @@ export default function Advantages() {
             todo funcione bien y sin problemas
           </li>
           <li>
-            <FaCheckCircle className={styles.iconCheck} /> Me encargo de la atención 24/7
+            <FaCheckCircle className={styles.iconCheck} /> Me encargo de la
+            atención 24/7
           </li>
         </ul>
       </div>
