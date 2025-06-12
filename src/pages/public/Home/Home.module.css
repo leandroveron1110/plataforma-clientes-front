@@ -22,41 +22,11 @@
   color: var(--text-white);
 }
 
-.referralSection {
-  background-color: var(--color-gris);
-  padding: 1.5rem;
-  border-radius: 1rem;
-  margin: 2rem 0;
-  text-align: center;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
-}
-
-.referralSection h2 {
-  font-size: 1.4rem;
-  color: var(--color-orange);
-  margin-bottom: 0.75rem;
-}
-
-.referralSection p {
-  font-size: 1rem;
-  margin-bottom: 1.2rem;
-  line-height: 1.5;
-}
-
-.referralButton {
-  background-color: var(--icon-green);
-  color: #000;
-  text-decoration: none;
+.highlight {
+  color: var(--icon-green);
   font-weight: 700;
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-  display: inline-block;
-  transition: background-color 0.2s ease;
 }
 
-.referralButton:hover {
-  background-color: #00e68a;
-}
 
 .footer {
   text-align: center;

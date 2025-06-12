@@ -16,14 +16,12 @@
 .referralContent {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+  /* gap: 2rem; */
   max-width: 900px;
   margin: 0 auto;
   text-align: center;
+  align-items: stretch;
 }
-
-
 
 .referralIcon {
   font-size: 3.5rem;
@@ -36,7 +34,7 @@
 }
 
 .referralSection h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-bottom: 1rem;
   color: var(--text-white);
 }
@@ -66,6 +64,6 @@
 }
 
 .referralButton:hover {
-  background-color: #00e68a;
   transform: scale(1.05);
+  color: #000;
 }

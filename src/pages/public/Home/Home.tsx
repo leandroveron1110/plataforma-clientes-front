@@ -8,7 +8,7 @@ const Home = () => {
     <>
     <main className={styles.container}>
       <header className={styles.header}>
-        <h1>Bienvenido a Kuty</h1>
+        <h1>Bienvenido a la  <span className={styles.highlight}>Red Kuty</span></h1>
       </header>
       <ReferralSection /> 
 

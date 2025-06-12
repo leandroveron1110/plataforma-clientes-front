@@ -5,10 +5,7 @@ export default function Advantages() {
   return (
     <section className={styles.container}>
       <div className={styles.earningsBlock}>
-        <p className={styles.earningsTitle}>
-          <FaCheckCircle className={styles.iconCheck} />
-          Ganás por cada persona que traés
-        </p>
+        <p className={styles.earningsTitle}>Ganás por cada persona que traés</p>
         <p className={styles.earningsSubtitle}>
           Sin complicarte, con total tranquilidad
         </p>
